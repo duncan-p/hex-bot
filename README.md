@@ -57,6 +57,7 @@ A sample Facebook Messenger Bot written as an AWS Lambda function.
 
 4. Select the /webhook resource POST request
   1. Select Integration Request and add a Body Mapping Template `application/json` with the following template:
+
     ```node
     #set($allParams = $input.params())
     {
