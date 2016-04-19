@@ -30,23 +30,23 @@ A sample Facebook Messenger Bot written as an AWS Lambda function.
   1. Select Method Request and add 2 Query String parameters `hub.verify_token` & `hub.challenge`
   2. Select Integration Request and add a Body Mapping Template `application/json` with the following template:
 
-   ```node
-   #set($allParams = $input.params())
-   {
-    "params" : {
-      #foreach($type in $allParams.keySet())
-        #set($params = $allParams.get($type))
-      "$type" : {
-        #foreach($paramName in $params.keySet())
-        "$paramName" : "$params.get($paramName)"
-            #if($foreach.hasNext),#end
-        #end
-      }
-        #if($foreach.hasNext),#end
-      #end
-      }
-   }
-   ```
+    ```node
+    #set($allParams = $input.params())
+    {
+     "params" : {
+       #foreach($type in $allParams.keySet())
+         #set($params = $allParams.get($type))
+       "$type" : {
+         #foreach($paramName in $params.keySet())
+         "$paramName" : "$params.get($paramName)"
+             #if($foreach.hasNext),#end
+         #end
+       }
+         #if($foreach.hasNext),#end
+       #end
+       }
+    }
+    ```
 
   3.  Select Method Response and add a Response Header `Content-Type`.
   4. Select Integration Response and set the `Content-Type` Header Mapping with a value `‘text/html’` (note, single quotes are important) and a Body Mapping template `text/html` with the following template:
