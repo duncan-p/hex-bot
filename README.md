@@ -1,4 +1,4 @@
-# hex-bot
+# Hex-Bot
 A sample Facebook Messenger Bot written as an AWS Lambda function.
 
 
@@ -16,7 +16,7 @@ A sample Facebook Messenger Bot written as an AWS Lambda function.
   2. Description `A hex code bot for Facebook Messenger`.
   3. Node version `4.3`.
   4. Set the Role to`Basic lambda execution` (make sure your browser allows popup windows).
-4. [Replace the blueprint code for the function](/blob/master/index.js)
+4. Replace the blueprint code [with the code for the function](/blob/master/index.js)
 
 
 
