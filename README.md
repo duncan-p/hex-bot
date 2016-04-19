@@ -34,17 +34,17 @@ A sample Facebook Messenger Bot written as an AWS Lambda function.
 #set($allParams = $input.params())
 {
 "params" : {
-#foreach($type in $allParams.keySet())
+  #foreach($type in $allParams.keySet())
     #set($params = $allParams.get($type))
-"$type" : {
+  "$type" : {
     #foreach($paramName in $params.keySet())
     "$paramName" : "$params.get($paramName)"
         #if($foreach.hasNext),#end
     #end
-}
+  }
     #if($foreach.hasNext),#end
-#end
-}
+  #end
+  }
 }
 ```
 
@@ -61,7 +61,7 @@ A sample Facebook Messenger Bot written as an AWS Lambda function.
 {
   "body": $input.json('$'),
   "params": {
-#foreach($type in $allParams.keySet())
+  #foreach($type in $allParams.keySet())
     #set($params = $allParams.get($type))
     "$type": {
     #foreach($paramName in $params.keySet())
@@ -70,7 +70,7 @@ A sample Facebook Messenger Bot written as an AWS Lambda function.
     #end
     }
     #if($foreach.hasNext),#end
-#end
+  #end
   }
 }
 ```
