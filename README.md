@@ -51,30 +51,30 @@ A sample Facebook Messenger Bot written as an AWS Lambda function.
   3.  Select Method Response and add a Response Header `Content-Type`.
   4. Select Integration Response and set the `Content-Type` Header Mapping with a value `‘text/html’` (note, single quotes are important) and a Body Mapping template `text/html` with the following template:
 
-   ```node
-   $input.path('$')
-   ```
+    ```node
+    $input.path('$')
+    ```
 
 4. Select the /webhook resource POST request
   1. Select Integration Request and add a Body Mapping Template `application/json` with the following template:
-   ```node
-   #set($allParams = $input.params())
-   {
-     "body": $input.json('$'),
-     "params": {
-     #foreach($type in $allParams.keySet())
-       #set($params = $allParams.get($type))
-       "$type": {
-       #foreach($paramName in $params.keySet())
-         "$paramName": "$util.escapeJavaScript($params.get($paramName))"
-           #if($foreach.hasNext),#end
-       #end
-       }
-       #if($foreach.hasNext),#end
-     #end
-     }
-   }
-   ```
+    ```node
+    #set($allParams = $input.params())
+    {
+      "body": $input.json('$'),
+      "params": {
+      #foreach($type in $allParams.keySet())
+        #set($params = $allParams.get($type))
+        "$type": {
+        #foreach($paramName in $params.keySet())
+          "$paramName": "$util.escapeJavaScript($params.get($paramName))"
+            #if($foreach.hasNext),#end
+        #end
+        }
+        #if($foreach.hasNext),#end
+      #end
+      }
+    }
+    ```
 
 5. Select Actions > Deploy the API. Make a note of the resource url for later.
 
@@ -93,9 +93,9 @@ A sample Facebook Messenger Bot written as an AWS Lambda function.
 9. Generate a page token by the Hex Bot page you just created.  Copy the page access token.
 10. Using the Page Access Token generated in the previous step, make the following call. This will subscribe the new app to get updates for the new Page.
 
-   ```node
-   curl -ik -X POST "https://graph.facebook.com/v2.6/me/subscribed_apps?access_token=<token>"
-   ```
+    ```node
+    curl -ik -X POST "https://graph.facebook.com/v2.6/me/subscribed_apps?access_token=<token>"
+    ```
 
 11. Go back and edit your Lambda Function. Paste the newly generated Page Access Token into the code to replace the existing value of the `token` variable.
 
